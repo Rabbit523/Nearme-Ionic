@@ -1,0 +1,320 @@
+<!doctype html>
+<html dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title><%= appName %></title>
+    <meta name="description" content="<%= appName %>">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+
+    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.min.css" />
+    <link rel="stylesheet" href="/bower_components/angular-google-places-autocomplete/src/autocomplete.css">
+    <link rel="stylesheet" href="/bower_components/angular-material-data-table/dist/md-data-table.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel="stylesheet" type="text/css" href="/styles/nearme.css">
+
+  </head>
+
+  <body layout="column" ng-app="app" md-scroll-y
+    ng-controller="MainCtrl" ng-cloak>
+    <section layout="row" flex>
+      <% if (user) { %>
+      <md-sidenav class="md-sidenav-left md-whiteframe-z2"
+        md-component-id="leftMenu" md-is-locked-open="$mdMedia('gt-lg')">
+        <md-toolbar class="md-tall">
+          <span flex></span>
+          <div layout="column" class="md-toolbar-tools-bottom inset">
+            <h5>
+              {{ 'HI' | translate }}, <%= user.name %>
+            </h5>
+          </div>
+        </md-toolbar>
+        <md-content>
+          <md-list-item md-no-ink href="/dashboard/places">
+            <div class="inset">
+              <ng-md-icon icon="location_on" layout="column"
+                layout-align="start center"></ng-md-icon>
+            </div>
+            <div class="inset">{{ 'PLACES' | translate }}</div>
+          </md-list-item>
+          <md-list-item md-no-ink href="/dashboard/categories">
+            <div class="inset">
+              <ng-md-icon icon="label" layout="column"
+                layout-align="start center"></ng-md-icon>
+            </div>
+            <div class="inset">{{ 'CATEGORIES' | translate }}</div>
+          </md-list-item>
+          <md-list-item md-no-ink href="/dashboard/users">
+            <div class="inset">
+              <ng-md-icon icon="people" layout="column"
+                layout-align="start center"></ng-md-icon>
+            </div>
+            <div class="inset">{{ 'USERS' | translate }}</div>
+          </md-list-item>
+          <md-list-item md-no-ink href="/dashboard/reviews">
+            <div class="inset">
+              <ng-md-icon icon="star" layout="column"
+                layout-align="start center">
+              </ng-md-icon>
+            </div>
+            <div class="inset">{{ 'REVIEWS' | translate }}</div>
+          </md-list-item>
+
+          <md-list-item md-no-ink href="/dashboard/slider-images">
+            <div class="inset">
+              <ng-md-icon icon="image" layout="column"
+                layout-align="start center">
+              </ng-md-icon>
+            </div>
+            <div class="inset">{{ 'SLIDER_IMAGES' | translate }}</div>
+          </md-list-item>
+
+          <md-list-item md-no-ink href="/dashboard/posts">
+            <div class="inset">
+              <ng-md-icon icon="list" layout="column"
+                layout-align="start center">
+              </ng-md-icon>
+            </div>
+            <div class="inset">{{ 'POSTS' | translate }}</div>
+          </md-list-item>
+
+          <md-list-item md-no-ink href="/dashboard/notifications">
+            <div class="inset">
+              <ng-md-icon icon="notifications" layout="column"
+                layout-align="start center">
+              </ng-md-icon>
+            </div>
+            <div class="inset">{{ 'NOTIFICATIONS' | translate }}</div>
+          </md-list-item>
+
+          <md-divider></md-divider>
+          <md-list-item md-no-ink href="/logout">
+            <div class="inset">
+              <ng-md-icon icon="logout" layout="column"
+               layout-align="start center"></ng-md-icon>
+            </div>
+            <div class="inset">{{ 'LOGOUT' | translate }}</div>
+          </md-list-item>
+        </md-content>
+      </md-sidenav>
+      <% } %>
+
+      <md-content layout="column" flex>
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <% if (user) { %>
+            <md-button ng-click="toggle()" hide-gt-lg
+              aria-label="Menu">
+              <ng-md-icon class="icon" icon="menu"
+                layout="column" layout-align="center center">
+              </ng-md-icon>
+            </md-button>
+            <% } %>
+            <h3><%= appName %></h3>
+          </div>
+        </md-toolbar>
+        <md-content flex class="content" layout-padding>
+          <div flex layout-padding>
+            <%- body %>
+          </div>
+        </md-content>
+      </md-content>
+    </section>
+
+    <script src="//maps.google.com/maps/api/js?libraries=places&key=<%= googleMapsApiKey %>"></script>
+    <script src="/bower_components/moment/min/moment.min.js"></script>
+
+    <script src="/bower_components/angular/angular.min.js"></script>
+   <script src="/bower_components/angular-aria/angular-aria.min.js"></script>
+   <script src="/bower_components/angular-animate/angular-animate.min.js"></script>
+   <script src="/bower_components/angular-messages/angular-messages.min.js"></script>
+   <script src="/bower_components/angular-material/angular-material.min.js"></script>
+    <script src="/bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
+    <script src="/bower_components/angular-material-icons/angular-material-icons.min.js"></script>
+    <script src="/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="/bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="/bower_components/ngmap/build/scripts/ng-map.min.js"></script>
+    <script src="/bower_components/parse/parse.min.js"></script>
+    <script src="/bower_components/angular-moment/angular-moment.min.js"></script>
+    <script src="/bower_components/angular-translate/angular-translate.min.js"></script>
+    <script src="/bower_components/angular-google-places-autocomplete/src/autocomplete.js"></script>
+
+    <script src="/scripts/lib/img-fallback.js"></script>
+    <script src="/scripts/lib/xml2json.min.js"></script>
+
+    <script>
+      angular.module('app', ['ngAnimate', 'ngAria','ngMessages', 'pascalprecht.translate',
+      'ngRoute', 'ngMdIcons', 'md.data.table', 'ngMaterial', 'google.places',
+      'ngFileUpload', 'ngMap','imgFallback', 'angularMoment'
+     ]).run(function ($rootScope, Auth, Place) {
+
+       Parse.initialize('<%= appId %>');
+       Parse.serverURL = '<%= serverUrl %>';
+
+       Place.getInstance();
+
+       <% if (user) { %>
+         Auth.setSessionToken('<%= user.sessionToken %>');
+       <% } else { %>
+         if (Auth.getLoggedUser()) {
+           Auth.logOut();
+         }
+       <% } %>
+
+     }).config(function($mdThemingProvider, $translateProvider, $mdDateLocaleProvider) {
+       
+       $mdThemingProvider.theme('default');
+
+        $translateProvider.translations('en', {
+          HI: 'Hi',
+          USERS: 'Backend Users',
+          PLACES: 'Places',
+          CATEGORIES: 'Categories',
+          REVIEWS: 'Reviews',
+          CHANGE_PASSWORD: 'Update password',
+          LOGOUT: 'Logout',
+          DESCRIPTION: 'Description',
+          STATUS: 'Status',
+          ACTIONS: 'Actions',
+          EXPIRES_AT: 'Expires at',
+          APPROVED: 'Approved',
+          EXPIRED: 'Expired',
+          APPROVE: 'Approve',
+          APPROVE_NUMBER_DAYS: 'Approve # days',
+          SEARCH: 'Search',
+          ROWS_PER_PAGE: 'Rows per page',
+          OF: 'of',
+          VIEW: 'View',
+          EDIT: 'Edit',
+          DELETE: 'Delete',
+          INACTIVE: 'Inactive',
+          ACTIVE: 'Active',
+          NEW: 'New',
+          CANCEL: 'Cancel',
+          FIELD_REQUIRED: 'Field required',
+          SAVE: 'Save',
+          SAVING: 'Saving...',
+          NAME: 'Name',
+          EMAIL: 'Email',
+          USERNAME: 'Username',
+          PHONE: 'Phone',
+          UPLOAD_PROFILE_PICTURE: 'Upload profile picture',
+          CHOOSE_FILE: 'Choose file',
+          PASSWORD: 'Password',
+          INVALID_EMAIL: 'Invalid email',
+          UPLOAD_PICTURE: 'Upload picture',
+          ADDRESS: 'Address',
+          DELETE: 'Delete',
+          LATITUDE: 'Latitude',
+          LONGITUDE: 'Longitude',
+          CHOOSE_AN_OPTION: 'Choose an option',
+          CREATED_AT: 'Created at',
+          UPDATED_AT: 'Updated at',
+          CATEGORY: 'Category',
+          DATE: 'Date',
+          ALL: 'All',
+          PENDING: 'Pending',
+          ACCEPTED: 'Accepted',
+          REJECTED: 'Rejected',
+          ACCEPT: 'Accept',
+          REJECT: 'Reject',
+          ORDER: 'Sort',
+          OK: 'Ok',
+          TITLE: 'Name',
+          OLD_PASSWORD: 'Old password',
+          NEW_PASSWORD: 'New password',
+          CONFIRM_PASSWORD: 'Confirm new password',
+          FORGOT_PASSWORD: 'Forgot password?',
+          LOGIN: 'Log in',
+          RESET_PASSWORD: 'Reset password',
+          SUBMIT: 'Submit',
+          BACK: 'Back',
+          FILL_FIELDS: 'Please fill in all required fields marked with an asterisk',
+          SAVED: 'Saved',
+          IMAGE_REQUIRED: 'Please upload an image',
+          LOCATION_REQUIRED: 'Set the location on the map',
+          FILE_NOT_SUPPORTED: 'File not supported',
+          FILE_UPLOADED: 'File uploaded',
+          DELETED: 'Deleted',
+          CONFIRM_DELETE: 'Are you sure you want to delete this record?',
+          CONFIRM: 'Confirm',
+          CANCEL: 'Cancel',
+          PASSWORD_AT_LEAST_SIX_CHARACTERS: 'Password should be at least 6 characters',
+          RESET_PASSWORD_SUCCESS: 'Check your email to reset your password',
+          SUCCESS: 'Success',
+          ERROR: 'Error',
+          ERROR_ACCOUNT_EXISTS: 'Account already exists for this username or email',
+          CANT_SAVE: 'Can\'t save the data entered',
+          ERROR_UPLOAD: 'Can\'t upload file',
+          YES: 'Yes',
+          NO: 'No',
+          ICON: 'Icon',
+          ORDER_BY: 'Order by',
+          UPLOAD_ICON: 'Upload Marker Icon',
+          CHOOSE_FILE: 'Choose file',
+          UPDATE: 'Update',
+          UPDATING: 'Updating...',
+          ICON_SIZE_HELP: 'Used in map. The icon image\'s dimensions should be 64x64 px',
+          ORDER: 'Sort',
+          ENTER_PLACE_NAME: 'Enter a place name (Powered by Google Places)',
+          WEBSITE: 'Website',
+          EMAIL: 'Email',
+          NAME: 'Name',
+          ROLE: 'Role',
+          ADMIN: 'Admin',
+          USER: 'User',
+          COMMENT: 'Comment',
+          RATING: 'Rating',
+          PLACE: 'Place',
+          FLAG_AS_APPROPRIATE: 'Flag as appropriate',
+          FLAG_AS_INAPPROPRIATE: 'Flag as inappropriate',
+          APPROPRIATE: 'Appropriate',
+          INAPPROPRIATE: 'Inappropriate',
+          DAYS: 'Days',
+          BACK_TO_LOGIN: 'Back to login',
+          EXPIRES_IN_10_DAYS: 'Expires in 10 days',
+          EXPIRES_IN_30_DAYS: 'Expires in 30 days',
+          NOTIFICATIONS: "Notifications",
+          SLIDER_IMAGES: "Slider Images",
+          POSTS: "Posts",
+          SORT: "Sort",
+          SEARCH_PLACE_IN_GOOGLE_PLACES: 'Search place in Google Places',
+          INVALID_URL: "Invalid URL",
+          LINK_TO: "Link to",
+          BROWSE: "Browse",
+          FEATURED: "Featured"
+        });
+        
+        $translateProvider.preferredLanguage('en').fallbackLanguage('en');
+     });
+    </script>
+
+    <script src="/scripts/controllers/MainController.js"></script>
+    <script src="/scripts/controllers/ResetPasswordController.js"></script>
+    <script src="/scripts/controllers/LoginController.js"></script>
+    <script src="/scripts/controllers/PlaceController.js"></script>
+    <script src="/scripts/controllers/ReviewController.js"></script>
+    <script src="/scripts/services/ReviewService.js"></script>
+    <script src="/scripts/services/PlaceService.js"></script>
+    <script src="/scripts/controllers/CategoryController.js"></script>
+    <script src="/scripts/services/CategoryService.js"></script>
+    <script src="/scripts/controllers/UserController.js"></script>
+    <script src="/scripts/services/UserService.js"></script>
+    <script src="/scripts/services/ToastService.js"></script>
+    <script src="/scripts/services/AuthService.js"></script>
+    <script src="/scripts/services/FileUploadService.js"></script>
+    
+    
+    <script src="/scripts/controllers/PostController.js"></script>
+    <script src="/scripts/services/PostService.js"></script>
+
+     <script src="/scripts/controllers/NotificationController.js"></script>
+    <script src="/scripts/services/NotificationService.js"></script>
+
+    <script src="/scripts/controllers/SliderImageController.js"></script>
+    <script src="/scripts/services/SliderImageService.js"></script>
+
+  </body>
+</html>

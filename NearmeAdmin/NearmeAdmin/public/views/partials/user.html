@@ -1,0 +1,88 @@
+<md-dialog flex="100" flex-gt-xs="40" aria-label="User dialog">
+
+  <form name="form" role="form" novalidate>
+
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>{{ objUser.id ? ('EDIT' | translate) : ('NEW' | translate) }}</h2>
+        <span flex></span>
+        <ng-md-icon aria-label="Close dialog" icon="close" class="icon-close"
+        ng-click="cancel()">
+        </ng-md-icon>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <md-content layout="column" layout-padding>
+
+        <md-input-container>
+          <label>{{ 'NAME' | translate }}</label>
+          <input type="text" name="name" ng-model="objUser.name" required>
+          <div ng-messages="form.name.$error" ng-show="form.$submitted">
+            <div ng-message="required">Name required</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container>
+          <label>{{ 'USERNAME' | translate }}</label>
+          <input type="text" name="username" ng-model="objUser.username" required>
+          <div ng-messages="form.username.$error" ng-show="form.$submitted">
+            <div ng-message="required">{{ 'FIELD_REQUIRED' | translate }}</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container>
+          <label>{{ 'EMAIL' | translate }}</label>
+          <input type="email" name="email" ng-model="objUser.email" required>
+          <div ng-messages="form.email.$error" ng-show="form.$submitted">
+            <div ng-message="required">{{ 'FIELD_REQUIRED' | translate }}</div>
+            <div ng-message="email">{{ 'INVALID_EMAIL' | translate }}</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container>
+          <label>{{ 'PASSWORD' | translate }}</label>
+          <input type="password" name="Password" ng-required="!objUser.id" ng-model="objUser.password">
+        </md-input-container>
+
+        <div layout="row" layout-align="start center">
+          <md-input-container md-no-float>
+            <label>{{ 'UPLOAD_PICTURE' | translate }}</label>
+            <input type="text" ng-value="objUser.photo.name()" disabled>
+          </md-input-container>
+
+          <ng-md-icon icon="photo_camera" class="photo-camera"
+            ng-class="{ 'photo-active': objUser.photo.url() }"
+            ngf-select="uploadImage($file)"
+            ngf-pattern="'image/*'" accept="image/*">
+            <md-tooltip>
+                {{ 'CHOOSE_FILE' | translate }}
+            </md-tooltip>
+          </ng-md-icon>
+          <md-progress-circular class="md-primary" md-diameter="30"
+            ng-if="isUploading">
+          </md-progress-circular>
+        </div>
+      </md-content>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button ng-click="cancel()">
+          {{ 'CANCEL' | translate }}
+      </md-button>
+      <span flex></span>
+      <md-button type="submit" class="md-raised md-primary"
+        ng-disabled="isSavingUser"
+        ng-click="onEventSaveUser(form.$valid)"
+        ng-show="!objUser.id">
+        {{ !isSavingUser ? ('SAVE' | translate) : ('SAVING' | translate) }}
+      </md-button>
+      <md-button type="submit" class="md-raised md-primary"
+        ng-disabled="isSavingUser"
+        ng-click="onEventUpdateUser(form.$valid)"
+        ng-show="objUser.id">
+        {{ !isSavingUser ? ('UPDATE' | translate) : ('UPDATING' | translate) }}
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

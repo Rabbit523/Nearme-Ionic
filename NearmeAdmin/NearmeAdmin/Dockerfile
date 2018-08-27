@@ -1,0 +1,27 @@
+FROM node:9.5.0
+
+WORKDIR /app
+
+ADD package.json /app/package.json
+RUN npm install
+
+ADD . /app
+
+ENV SERVER_URL https://nearmev4.quanlabs.com/parse
+ENV PUBLIC_SERVER_URL https://nearmev4.quanlabs.com/parse
+ENV APP_NAME Nearme
+ENV APP_ID myAppId
+ENV MASTER_KEY myMasterKey
+ENV MAILGUN_API_KEY YOUR_MAILGUN_API_KEY
+ENV MAILGUN_DOMAIN quanlabs.com
+ENV MAILGUN_FROM_ADDRESS 'QuanLabs <info@quanlabs.com>'
+ENV MAILGUN_TO_ADDRESS 'info@quanlabs.com'
+ENV GOOGLE_MAPS_API_KEY YOUR_GOOGLE_MAPS_API_KEY
+ENV PUSH_ANDROID_SENDER_ID YOUR_SENDER_ID
+ENV PUSH_ANDROID_API_KEY YOUR_ANDROID_API_KEY
+ENV PUSH_IOS_BUNDLE_ID com.quanlabs.nearme4
+ENV MAX_UPLOAD_SIZE 20M
+ENV DOKKU_LETSENCRYPT_EMAIL dev@quanlabs.com
+#ENV NEW_RELIC_LICENSE_KEY YOUR_NEW_RELIC_LICENSE_KEY
+
+CMD ["npm", "start"]

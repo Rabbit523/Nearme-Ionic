@@ -1,0 +1,247 @@
+body {
+  font-family: 'Cairo', 'Roboto', sans-serif;
+}
+
+ng-md-icon {
+  fill: grey;
+}
+
+ng-md-icon[icon="add"], ng-md-icon[icon="menu"], ng-md-icon[icon="close"] {
+  fill: white;
+}
+
+md-table-pagination {
+  margin-right: 50px;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  box-shadow: 0 0 0px 1000px white inset;
+}
+
+body,
+md-input-container label,
+md-input-container .md-input[disabled],
+table.md-table th.md-column,
+table.md-table td.md-cell,
+.md-table-pagination {
+  color: rgba(0,0,0, 0.9);
+}
+
+md-select-menu md-option:focus:not([disabled]):not([selected]) {
+  background: rgba(144, 144, 144, 0.5);
+}
+
+table.md-table td.md-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 100px;
+  max-width: 100px;
+}
+
+.hint {
+  position: absolute;
+  left: 8px;
+  right: auto;
+  bottom: 7px;
+  font-size: 12px;
+  line-height: 14px;
+  color: grey;
+}
+
+.filter-bar {
+  padding-left: 15px;
+}
+
+.filter-bar md-input-container {
+  margin-right: 10px;
+}
+
+.filter-bar md-datepicker {
+  padding-top: 16px;
+}
+
+.photo-camera {
+	cursor: pointer;
+}
+
+.photo-active {
+	fill: #1e88e5;
+}
+
+.fade.ng-enter {
+  transition: 1s linear all;
+  opacity: 0;
+}
+
+.fade.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+.md-button.md-fab.md-fab-bottom-right {
+	top: auto;
+	left: auto;
+	bottom: 20px;
+	right: 20px;
+	position: fixed;
+}
+
+.star-rating {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+
+.star {
+  padding: 1px;
+  color: #ddd;
+  font-size: 20px;
+  text-shadow: .05em .05em #aaa;
+  list-style-type: none;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.star.filled i {
+  color: #fd0;
+}
+
+.login-content {
+	background: none;
+}
+
+.content {
+	background-color: #f2f2f2;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.no-padding {
+	padding: 0px;
+}
+.no-margin {
+	margin: 0px;
+}
+
+.color-white {
+	color: #fff;
+}
+
+.map {
+	display: block;
+	height: 250px;
+	width: 100%;
+}
+
+.hide {
+	display: none !important;
+}
+
+.img-thumb {
+	width: 80px;
+	height: 80px;
+  margin: 5px 0;
+}
+
+.img-circle {
+  border-radius: 50%;
+}
+
+.no-border {
+	border: none
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
+.label {
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: inline-block;
+  line-height: 1.5em;
+  text-align: center;
+  min-width: 80px;
+}
+
+.label.yellow {
+  background-color: #FFF176;
+  color: #333;
+}
+
+.label.orange {
+  background-color: #FF9E3D;
+}
+
+.label.green {
+  background-color: #AED581;
+}
+
+.label.red {
+  background-color: #E57373;
+}
+
+.text-wrap {
+  white-space: normal !important;
+}
+
+[dir=rtl] .md-table-pagination md-select .md-select-value span.md-select-icon {
+  margin-right: 0 !important;
+  margin-left: -6px !important;
+}
+
+[dir=rtl] .md-table-pagination > .buttons:not(:first-child), .limit-select:not(:first-child) {
+  margin-left: 0;
+  margin-right: 32px;
+}
+
+[dir=rtl] .md-table-pagination > .buttons {
+  margin-right: 0;
+  margin-left: -16px;
+}
+
+[dir=rtl] .md-table-pagination > .buttons > .md-button.md-icon-button {
+  /*transform: rotateY(180deg); */
+}
+
+[dir=rtl] .md-table-pagination > .buttons > .label + .md-button.md-icon-button {
+  margin-left: 0;
+  margin-right: 20px;
+}
+
+[dir=rtl] table.md-table th.md-column md-icon:not(:first-child) {
+  margin-left: 0px;
+  margin-right: 8px;
+}
+
+[dir=rtl] table.md-table th.md-column md-icon:not(:last-child) {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+
+[dir=rtl] table.md-table td.md-cell, [dir=rtl] table.md-table th.md-column {
+  text-align: right;
+}
+
+[dir=rtl] table.md-table td.md-cell:last-child, [dir=rtl] table.md-table th.md-column:last-child {
+  padding: 0 0 0 24px;
+}
+
+[dir=rtl] table.md-table td.md-cell.md-numeric, [dir=rtl] table.md-table th.md-column.md-numeric {
+  text-align: left;
+}
+
+[dir=rtl] table.md-table td.md-cell md-select > .md-select-value > span.md-select-icon {
+  text-align: left;
+}
+
+[dir=rtl] table, md-table-pagination {
+  direction: ltr;
+}

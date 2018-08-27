@@ -1,0 +1,189 @@
+<md-dialog flex="100" flex-gt-xs="40" aria-label="Place Dialog">
+  <form name="form" role="form" novalidate>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2 ng-show="isCreating">{{ 'NEW' | translate }}</h2>
+        <h2 ng-show="!isCreating">{{ 'EDIT' | translate }} {{::place.title }}</h2>
+        <span flex></span>
+        <ng-md-icon icon="close" class="icon-close" ng-click="cancel()"
+          aria-label="Close dialog"></ng-md-icon>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <md-content layout="column" layout-padding>
+
+        <md-input-container class="md-block">
+          <label>{{ 'SEARCH_PLACE_IN_GOOGLE_PLACES' | translate }}</label>
+          <input type="text" g-places-autocomplete options="autocompleteOptions"
+            force-selection="true"
+            ng-model="placeFromGooglePlaces" />
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>{{ 'CATEGORY' | translate }}</label>
+          <md-select name="category" required ng-model="place.category"
+            ng-model-options="{ trackBy: '$value.id' }">
+            <md-option ng-value="category"
+              ng-repeat="category in categories track by category.id">
+              {{ category.title }}
+            </md-option>
+          </md-select>
+          <div ng-messages="form.category.$error" ng-show="form.$submitted">
+            <div ng-message="required">{{ 'FIELD_REQUIRED' | translate }}</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>{{ 'TITLE' | translate }}</label>
+          <input type="text" required name="title" ng-model="place.title">
+          <div ng-messages="form.title.$error" ng-show="form.$submitted">
+            <div ng-message="required">{{ 'FIELD_REQUIRED' | translate }}</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>{{ 'DESCRIPTION' | translate }}</label>
+          <textarea name="description" ng-model="place.description" rows="3" required>
+          </textarea>
+          <div ng-messages="form.description.$error" ng-show="form.$submitted">
+            <div ng-message="required">{{ 'FIELD_REQUIRED' | translate }}</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>{{ 'PHONE' | translate }}</label>
+          <input type="text" name="phone" ng-model="place.phone">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>{{ 'WEBSITE' | translate }}</label>
+          <input type="url" name="website" ng-model="place.website">
+          <div ng-messages="form.website.$error" ng-show="form.$submitted">
+            <div ng-message="url">{{ 'INVALID_URL' | translate }}</div>
+          </div>
+        </md-input-container>
+
+        <md-checkbox aria-label="Featured" ng-model="place.isFeatured">
+          {{ 'FEATURED' | translate }}
+        </md-checkbox>
+
+        <md-input-container class="md-block">
+          <label>{{ 'ADDRESS' | translate }}</label>
+          <input type="text" name="address" ng-model="place.address"
+            ng-model-options="{ debounce: 2000 }" ng-change="onAddressChanged()">
+        </md-input-container>
+
+        <md-input-container>
+          <ng-map class="map" scrollwheel="false"
+            map-type-control="false"
+            street-view-control="false">
+            <marker draggable="true" on-dragend="onMarkerDragEnd()"></marker>
+          </ng-map>
+        </md-input-container>
+
+        <div layout="row" layout-align="start center">
+          <md-input-container>
+            <label>{{ 'LATITUDE' | translate }}</label>
+            <input type="number" name="latitude"
+              ng-change="onInputLocationChanged()"
+              ng-model-options="{debounce:1000}"
+              ng-model="input.latitude">
+          </md-input-container>
+
+          <md-input-container>
+            <label>{{ 'LONGITUDE' | translate }}</label>
+            <input type="number" name="longitude"
+              ng-change="onInputLocationChanged()"
+              ng-model-options="{debounce:1000}"
+              ng-model="input.longitude">
+          </md-input-container>
+        </div>
+
+        <div layout="row" layout-align="start center">
+          <md-input-container md-no-float>
+            <label>{{ 'UPLOAD_PICTURE' | translate }}</label>
+            <input type="text" ng-model="imageOneFilename" disabled>
+          </md-input-container>
+          <ng-md-icon icon="photo_camera" class="photo-camera"
+            ng-class="{ 'photo-active': place.image.url() }"
+            ngf-select="uploadImageOne($file, $invalidFile)"
+            ngf-pattern="'image/*'" accept="image/*">
+            <md-tooltip>
+                {{ 'CHOOSE_FILE' | translate }}
+            </md-tooltip>
+          </ng-md-icon>
+          <md-progress-circular class="md-primary" md-diameter="30"
+            ng-if="isImageOneUploading">
+          </md-progress-circular>
+        </div>
+        <div layout="row" layout-align="start center">
+          <md-input-container md-no-float>
+            <label>{{ 'UPLOAD_PICTURE' | translate }}</label>
+            <input type="text" ng-model="imageTwoFilename" disabled>
+          </md-input-container>
+          <ng-md-icon icon="photo_camera" class="photo-camera"
+            ng-class="{ 'photo-active': place.imageTwo.url() }"
+            ngf-select="uploadImageTwo($file, $invalidFile)"
+            ngf-pattern="'image/*'" accept="image/*">
+            <md-tooltip>
+                {{ 'CHOOSE_FILE' | translate }}
+            </md-tooltip>
+          </ng-md-icon>
+          <md-progress-circular class="md-primary" md-diameter="30"
+            ng-if="isImageTwoUploading">
+          </md-progress-circular>
+        </div>
+        <div layout="row" layout-align="start center">
+          <md-input-container md-no-float>
+            <label>{{ 'UPLOAD_PICTURE' | translate }}</label>
+            <input type="text" ng-model="imageThreeFilename" disabled>
+          </md-input-container>
+          <ng-md-icon icon="photo_camera" class="photo-camera"
+            ng-class="{ 'photo-active': place.imageThree.url() }"
+            ngf-select="uploadImageThree($file, $invalidFile)"
+            ngf-pattern="'image/*'" accept="image/*">
+            <md-tooltip>
+                {{ 'CHOOSE_FILE' | translate }}
+            </md-tooltip>
+          </ng-md-icon>
+          <md-progress-circular class="md-primary" md-diameter="30"
+            ng-if="isImageThreeUploading">
+          </md-progress-circular>
+        </div>
+        <div layout="row" layout-align="start center">
+          <md-input-container md-no-float>
+            <label>{{ 'UPLOAD_PICTURE' | translate }}</label>
+            <input type="text" ng-model="imageFourFilename" disabled>
+          </md-input-container>
+          <ng-md-icon icon="photo_camera" class="photo-camera"
+            ng-class="{ 'photo-active': place.imageFour.url() }"
+            ngf-select="uploadImageFour($file, $invalidFile)"
+            ngf-pattern="'image/*'" accept="image/*">
+            <md-tooltip>
+                {{ 'CHOOSE_FILE' | translate }}
+            </md-tooltip>
+          </ng-md-icon>
+          <md-progress-circular class="md-primary" md-diameter="30"
+            ng-if="isImageFourUploading">
+          </md-progress-circular>
+        </div>
+      </md-content>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button class="" ng-click="cancel()">
+          {{ 'CANCEL' | translate }}
+      </md-button>
+      <span flex></span>
+      <md-button type="submit" class="md-raised md-primary" ng-click="onSavePlace(form.$valid)"
+        ng-disabled="isSavingPlace"
+        ng-show="isCreating">
+        {{ !isSavingPlace ? ('SAVE' | translate) : ('SAVING' | translate) }}
+      </md-button>
+      <md-button type="submit" class="md-raised md-primary" ng-click="onUpdatePlace(form.$valid)"
+        ng-disabled="isSavingPlace"
+        ng-show="!isCreating">
+        {{ !isSavingPlace ? ('UPDATE' | translate) : ('UPDATING' | translate) }}
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

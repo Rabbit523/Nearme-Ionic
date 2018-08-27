@@ -1,0 +1,112 @@
+<md-dialog flex="100" flex-gt-xs="40" aria-label="Slider Image dialog">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <span ng-if="slider.isNew()">New Slider Image</span>
+            <span ng-if="!slider.isNew()">Edit Slider Image</span>
+            <span flex></span>
+            <ng-md-icon icon="close" class="icon-close" ng-click="onCancel()"
+              aria-label="Close dialog"></ng-md-icon>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <md-card-content>
+
+                <form name="form" novalidate>
+
+                    <div layout="row">
+                        <div flex="100" class="box-picture img-box"
+                        ng-style="{'background-image': slider.image ? 'url('+slider.image.url()+')' : 'url(/images/noImg.jpg)' }"></div>
+                    </div>
+
+                    <br/>
+
+                    <div layout="row" layout-align="start">
+                        <md-input-container md-no-float class="md-block" flex="70">
+                            <label>Upload Picture</label>
+                            <input type="text" value="{{ slider.image.name() }}" disabled>
+                        </md-input-container>
+
+                        <div layout="column" layout-align="start center" flex="30">
+                            <ng-md-icon icon="photo_camera" class="photo-camera"
+                              ng-class="{ 'icon-active': slider.image.url() }">
+                            </ng-md-icon>
+                            <md-button type="button" class="md-raised md-mini"
+                              ngf-select="uploadImage($file)"
+                              ngf-pattern="'image/*'">
+                                Browse
+                            </md-button>
+                            <md-progress-circular class="md-primary"
+                              md-diameter="30" ng-if="isUploading">
+                            </md-progress-circular>
+                        </div>
+                    </div>
+
+                    <div layout="row">
+                        <md-input-container flex>
+                            <label>Sort</label>
+                            <input name="sort" type="number" min="0"
+                              ng-model="slider.sort" required>
+                            <div ng-messages="form.sort.$error">
+                                <div ng-message="required">Field required</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+
+                    <md-input-container class="md-block">
+                        <label>{{ 'LINK_TO' | translate }}</label>
+                        <md-select name="type" ng-model="slider.type">
+                          <md-option value="place">{{ 'PLACE' | translate }}</md-option>
+                          <md-option value="url">{{ 'URL' | translate }}</md-option>
+                        </md-select>
+                      </md-input-container>
+
+                    <div layout="row" ng-if="slider.type === 'place'">
+                        <md-autocomplete flex
+                            md-input-name="place"
+                            md-min-length="3"
+                            md-delay="1000"
+                            md-no-cache="true"
+                            md-selected-item="slider.place"
+                            md-search-text="searchText"
+                            md-items="place in queryPlaces(searchText)"
+                            md-item-text="place.title"
+                            md-require-match
+                            md-floating-label="Place">
+                            <md-item-template>
+                            <span md-highlight-text="searchText">{{ place.title }}</span>
+                            </md-item-template>
+                            <md-not-found>
+                            No matches found.
+                            </md-not-found>
+                            <div ng-messages="form.item.$error">
+                              <div ng-message="md-require-match">Please select an existing place.</div>
+                            </div>
+                        </md-autocomplete>
+                    </div>
+
+                    <div layout="row" ng-if="slider.type === 'url'">
+                        <md-input-container flex>
+                            <label>URL</label>
+                            <input name="url" type="url" ng-model="slider.url">
+                        </md-input-container>
+                    </div>
+
+                </form>
+
+            </md-card-content>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        
+        <md-button ng-click="onCancel()">
+            Cancel
+        </md-button>
+        <span flex></span>
+        <md-button class="md-raised md-primary"
+          ng-disabled="(!form.$valid)"
+          ng-click="onSubmit(form.$valid)">
+            {{ !isSavingDisabled ? 'Save' : 'Saving...' }}
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

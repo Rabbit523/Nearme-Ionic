@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.41" />
+    <meta name="description" content="Documentation for Nearme">
+<meta name="author" content="Fernando Mendoza">
+
+    <link rel="shortcut icon" href="/docs/images/favicon.png" type="image/x-icon" />
+<link rel="icon" href="/docs/images/favicon.png" type="image/x-icon" />
+    <title>Installation :: Documentation for Nearme</title>
+    
+    
+    <link href="/docs/css/nucleus.css?1529702475" rel="stylesheet">
+    <link href="/docs/css/font-awesome.min.css?1529702475" rel="stylesheet">
+    <link href="/docs/css/hybrid.css?1529702475" rel="stylesheet">
+    <link href="/docs/css/featherlight.min.css?1529702475" rel="stylesheet">
+    <link href="/docs/css/perfect-scrollbar.min.css?1529702475" rel="stylesheet">
+    <link href="/docs/css/auto-complete.css?1529702475" rel="stylesheet">
+    <link href="/docs/css/theme.css?1529702475" rel="stylesheet">
+    <link href="/docs/css/hugo-theme.css?1529702475" rel="stylesheet">
+    
+      <link href="/docs/css/theme-blue.css?1529702475" rel="stylesheet">
+    
+
+    <script src="/docs/js/jquery-2.x.min.js?1529702475"></script>
+    
+    <style type="text/css">
+      :root #header + #content > #left > #rlblock_left{ 
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/docs/en/admin-portal/installation/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="/">
+  <img height="50" src="/docs/images/logo.png" />
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fa fa-search"></i></label>
+    <input data-search-input id="search-by" type="text" placeholder="Search...">
+    <span data-search-clear=""><i class="fa fa-close"></i></span>
+</div>
+
+<script type="text/javascript" src="/docs/js/lunr.min.js?1529702475"></script>
+<script type="text/javascript" src="/docs/js/auto-complete.js?1529702475"></script>
+<script type="text/javascript">
+    
+        var baseurl = "\/docs\/en";
+    
+</script>
+<script type="text/javascript" src="/docs/js/search.js?1529702475"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/docs/en/admin-portal/" title="Admin Portal" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/docs/en/admin-portal/">
+          <b>1. </b>Admin Portal
+          
+            <i class="fa fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/docs/en/admin-portal/requirements/" title="Requirements" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/docs/en/admin-portal/requirements/">
+          Requirements
+          
+            <i class="fa fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/docs/en/admin-portal/installation/" title="Installation" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="/docs/en/admin-portal/installation/">
+          Installation
+          
+            <i class="fa fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/docs/en/admin-portal/configuration/" title="Configuration" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/docs/en/admin-portal/configuration/">
+          Configuration
+          
+            <i class="fa fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/docs/en/admin-portal/deploying/" title="Deploying" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/docs/en/admin-portal/deploying/">
+          Deploying
+          
+            <i class="fa fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/docs/en/mobile-app/" title="Mobile app" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/docs/en/mobile-app/">
+          <b>2. </b>Mobile app
+          
+            <i class="fa fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/docs/en/mobile-app/requirements/" title="Requirements" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/docs/en/mobile-app/requirements/">
+          Requirements
+          
+            <i class="fa fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/docs/en/mobile-app/configuration/" title="Configuration" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/docs/en/mobile-app/configuration/">
+          Configuration
+          
+            <i class="fa fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/docs/en/mobile-app/deploying/" title="Deploying" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/docs/en/mobile-app/deploying/">
+          Deploying
+          
+            <i class="fa fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/docs/en/release-notes/" title="Changelog" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/docs/en/release-notes/">
+          <b></b>Changelog
+          
+            <i class="fa fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+        <li>
+          <a class="padding">
+            <i class="fa fa-fw fa-language"></i>
+          <div class="select-style">
+            <select id="select-language" onchange="location = this.value;">
+          
+          
+          
+              
+              
+                  
+                    
+                    
+                      <option id="en" value="/docs/en/admin-portal/installation/" selected>English</option>
+                    
+                  
+              
+                  
+              
+          
+              
+              
+                  
+              
+                  
+                    
+                    
+                      <option id="es" value="/docs/es/admin-portal/installation/">Español</option>
+                    
+                  
+              
+          
+        </select>
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+          <g>
+            <g id="arrow-drop-down">
+              <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+            </g>
+          </g>
+        </svg>
+        </div>
+        </a>
+        </li>
+       
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fa fa-fw fa-history"></i> Clear History</a></li>         
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <center>
+    <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fa fa-heart"></i></a> from <a href="https://quanlabs.com">Quanlabs</a>
+</center>
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fa fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fa fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/docs/en/'>Nearme. Ionic 2/3 Starter for Location Based Apps</a> > <a href='/docs/en/admin-portal/'>Admin Portal</a> > Installation
+          
+         
+          
+         
+          
+           
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#creat-an-account-in-digitalocean">Creat an account in DigitalOcean</a></li>
+<li><a href="#create-droplet">Create Droplet</a>
+<ul>
+<li><a href="#configure-dokku">Configure Dokku</a></li>
+</ul></li>
+<li><a href="#configure-dns">Configure DNS</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+
+        
+        <div id="body-inner">
+          
+            <h1>Installation</h1>
+          
+
+        
+
+
+
+
+<p>While it is possible to setup a server from scratch, we recommend <a href="http://dokku.viewdocs.io/dokku/">Dokku</a> to automate this process.</p>
+
+<p>If you still aren&rsquo;t familiar with Dokku, basically it&rsquo;s an open source version of <a href="https://www.heroku.com/">Heroku</a> that can be installed on your own server that allows us to deploy our applications with Git.</p>
+
+<p>Fortunately, DigitalOcean, one of the best providers of virtual machines, has an image based on Dokku, ready to be used after a few clicks.</p>
+
+<p>In the next steps we will see how to setup the server with Dokku, install the web portal with Node.js and running MongoDB, add file persistence and even configure SSL without extra cost!</p>
+
+<h2 id="creat-an-account-in-digitalocean">Creat an account in DigitalOcean</h2>
+
+<p>Go to the <a href="https://www.digitalocean.com/">DigitalOcean</a> and create a new account or use an existing account. If you wish you can use our <a href="https://m.do.co/c/5ab4b0d2e29a">referral link</a> to obtain 10 USD of free credit.</p>
+
+<h2 id="create-droplet">Create Droplet</h2>
+
+<p>Within your DigitalOcean account, click on the <em>Create</em> button and select the <em>Droplets</em> option to start the process of creating your new droplet. Then select the Dokku image as shown in the following video:</p>
+
+<p><img src="/docs/images/create-droplet.gif" alt="Create Droplet" /></p>
+
+<p>After a couple of minutes we should have our server ready running with Dokku.</p>
+
+<p>In the video above you will notice that the SSH key was already configured. In the opposite case you will have to add your own SSH key, which will be necessary to access to the server without passwords.</p>
+
+<div class="notices note" ><p>It is recommended to start with the most economic plan and with the data center closest to the location of your users. If the server load increases in the future you can increase the CPU, RAM and hard disk at any time through the DigitalOcean panel. It would also be a good idea to activate the backups when the application is in production.</p>
+</div>
+
+
+<h3 id="configure-dokku">Configure Dokku</h3>
+
+<p>Now on the page where the list of droplets appears, look for the newly created droplet and copy the server IP.</p>
+
+<p><img src="/docs/images/droplet-ip.png" alt="Droplet IP" /></p>
+
+<p>Open the IP in your web browser to finish the installation of Dokku.</p>
+
+<p><img src="/docs/images/dokku-setup.png" alt="Dokku Set" /></p>
+
+<p>You&rsquo;ll see the SSH key that we configured when creating the droplet. In the <em>Hostname</em> field, enter the main domain of the app and activate the option <em>Use virtualhost naming for apps</em>. It should look something like this:</p>
+
+<p><img src="/docs/images/dokku-setup1.png" alt="Dokku Set" /></p>
+
+<p>Press <em>Finish Setup</em>. Now you can close this tab and continue with the next step.</p>
+
+<h2 id="configure-dns">Configure DNS</h2>
+
+<p>Finally we have to add an A record in the DNS configuration of the desired domain to point to the IP of the droplet. This step varies depending on the provider you have hired to manage your domains. In this example we will make the configuration from cPanel.</p>
+
+<p><img src="/docs/images/setup-dns.gif" alt="Setup DNS" /></p>
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+        
+            <a class="nav nav-prev" href="/docs/en/admin-portal/requirements/" title="Requirements"> <i class="fa fa-chevron-left"></i></a>
+        
+        
+            <a class="nav nav-next" href="/docs/en/admin-portal/configuration/" title="Configuration" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+        
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/docs/js/clipboard.min.js?1529702475"></script>
+    <script src="/docs/js/perfect-scrollbar.min.js?1529702475"></script>
+    <script src="/docs/js/perfect-scrollbar.jquery.min.js?1529702475"></script>
+    <script src="/docs/js/jquery.sticky.js?1529702475"></script>
+    <script src="/docs/js/featherlight.min.js?1529702475"></script>
+    <script src="/docs/js/html5shiv-printshiv.min.js?1529702475"></script>
+    <script src="/docs/js/highlight.pack.js?1529702475"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/docs/js/modernizr.custom.71422.js?1529702475"></script>
+    <script src="/docs/js/learn.js?1529702475"></script>
+    <script src="/docs/js/hugo-learn.js?1529702475"></script>
+
+    <link href="/docs/mermaid/mermaid.css?1529702475" type="text/css" rel="stylesheet" />
+    <script src="/docs/mermaid/mermaid.js?1529702475"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-105947713-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Changelog on Documentation for Nearme</title>
+    <link>https://nearmev4.quanlabs.com/docs/en/release-notes/</link>
+    <description>Recent content in Changelog on Documentation for Nearme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 12 Jun 2018 09:11:40 -0500</lastBuildDate>
+    
+	<atom:link href="https://nearmev4.quanlabs.com/docs/en/release-notes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>

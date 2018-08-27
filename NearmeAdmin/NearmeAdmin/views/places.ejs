@@ -1,0 +1,170 @@
+<md-content ng-controller="PlaceCtrl">
+	<md-table-toolbar>
+		<div layout="row">
+			<md-content flex-gt-md="65" flex="100" style="overflow: hidden">
+				<br>
+				<div layout-gt-sm="row" class="filter-bar">
+					<md-input-container class="md-block" flex-gt-xs>
+						<label>{{ 'SEARCH' | translate }}</label>
+						<input type="text" ng-model="query.filter"
+							ng-model-options="{ debounce: 1000 }" ng-change="onQueryChange()">
+					</md-input-container>
+
+					<md-input-container class="md-block" flex-gt-xs>
+						<label>{{ 'CATEGORY' | translate }}</label>
+						<md-select ng-model="query.category" ng-change="onQueryChange()">
+							<md-option value="">
+								{{ 'ALL' | translate }}
+							</md-option>
+							<md-option ng-value="category" value="{{ category }}"
+								ng-repeat="category in categories">
+								{{ category.title }}
+							</md-option>
+						</md-select>
+					</md-input-container>
+					<md-input-container class="md-block" flex-gt-xs>
+						<label>{{ 'STATUS' | translate }}</label>
+						<md-select ng-model="query.status" ng-change="onQueryChange()">
+							<md-option value="">
+								{{ 'ALL' | translate }}
+							</md-option>
+							<md-option value="Pending">
+								{{ 'PENDING' | translate }}
+							</md-option>
+							<md-option value="approved">
+								{{ 'APPROVED' | translate }}
+							</md-option>
+							<md-option value="Rejected">
+								{{ 'REJECTED' | translate }}
+							</md-option>
+							<md-option value="Expired">
+								{{ 'EXPIRED' | translate }}
+							</md-option>
+						</md-select>
+					</md-input-container>
+				
+				</div>
+				<div layout-gt-sm="row" class="filter-bar">
+					  <md-checkbox aria-label="Featured" ng-change="onQueryChange()"
+					  ng-model="query.isFeatured" flex-gt-xs>
+					  {{ 'FEATURED' | translate }}
+					  </md-checkbox>
+				</div>
+			</md-content>
+		</div>
+	</md-table-toolbar>
+
+	<md-table-container>
+	  <table md-table md-progress="promise">
+	    <thead md-head>
+	      <tr md-row>
+	      	<th md-column></th>
+	        <th md-column>{{ 'TITLE' | translate }}</th>
+	        <th md-column>{{ 'CATEGORY' | translate }}</th>
+	        <th md-column>{{ 'STATUS' | translate }}</th>
+					<th md-column>{{ 'EXPIRES_AT' | translate }}</th>
+					<th md-column>{{ 'CREATED_AT' | translate }}</th>
+			    <th name="Actions"></th>
+	      </tr>
+	    </thead>
+	    <tbody md-body>
+	      <tr md-row ng-repeat="place in places">
+	      	<td md-cell>
+	      		<img class="img-thumb img-circle" ng-src="/images/placeholder.png"
+						actual-src="{{ place.imageThumb.url() }}" />
+	      	</td>
+	      	<td md-cell>{{:: place.title }}</td>
+	        <td md-cell>{{:: place.category.get('title') }}</td>
+					<td md-cell>
+						<span class="label"
+						  ng-class="{ 'green': place.status === 'Approved',
+							'red': place.status === 'Rejected',
+							'orange': place.status === 'Expired',
+						  'yellow': place.status === 'Pending' }">
+							<span ng-if="place.status === 'Rejected'">{{ 'REJECTED' | translate }}</span>
+							<span ng-if="place.status === 'Expired'">{{ 'EXPIRED' | translate }}</span>
+							<span ng-if="place.status === 'Pending'">{{ 'PENDING' | translate }}</span>
+							<span ng-if="place.status === 'Approved'">{{ 'APPROVED' | translate }}</span>
+						</span>
+					</td>
+					<td md-cell>
+						<span ng-if="place.expiresAt">
+							{{ place.expiresAt | date:'medium' }}
+						</span>
+					</td>
+					<td md-cell>{{ place.createdAt | date:'mediumDate' }}</td>
+	        <td md-cell>
+				<md-menu>
+			      <md-button aria-label="Open menu" class="md-icon-button"
+			        ng-click="openMenu($mdOpenMenu, $event)">
+			        <ng-md-icon md-menu-origin icon="more_vert"
+			          layout="row" layout-align="start center">
+			        </ng-md-icon>
+			      </md-button>
+			      <md-menu-content width="3">
+
+			        <md-menu-item>
+			          <md-button aria-label="Edit place"
+								  ng-click="onUpdatePlace($event, place)">
+			            {{ 'EDIT' | translate }}
+			          </md-button>
+			        </md-menu-item>
+
+			        <md-menu-item aria-label="Delete place">
+			          <md-button aria-label="Delete place"
+								  ng-click="onDestroyPlace($event, place)">
+			            {{ 'DELETE' | translate }}
+			          </md-button>
+			        </md-menu-item>
+
+							<md-divider></md-divider>
+
+							<md-menu-item>
+			          <md-button aria-label="Pending place"
+								  ng-click="onChangeStatus(place, 'Pending')">
+			            {{ 'PENDING' | translate }}
+			          </md-button>
+			        </md-menu-item>
+
+							<md-menu-item>
+			          <md-button aria-label="Approve place"
+								  ng-click="onChangeStatus(place, 'Approved')">
+			            {{ 'APPROVE' | translate }}
+			          </md-button>
+			        </md-menu-item>
+
+							<md-menu-item>
+								<md-button aria-label="Approve place for # days"
+								  ng-click="onUpdateExpiresAt($event, place)">
+									{{ 'APPROVE_NUMBER_DAYS' | translate }}
+								</md-button>
+							</md-menu-item>
+
+							<md-menu-item>
+			          <md-button aria-label="Reject place"
+								  ng-click="onChangeStatus(place, 'Rejected')">
+			            {{ 'REJECT' | translate }}
+			          </md-button>
+			        </md-menu-item>
+
+			      </md-menu-content>
+			    </md-menu>
+	        </td>
+	      </tr>
+	    </tbody>
+	  </table>
+	</md-table-container>
+	<md-table-pagination md-limit-options="rowOptions"
+	  md-limit="query.limit"
+	  md-page="query.page" md-total="{{query.total}}"
+		md-on-paginate="onPaginationChange"
+		md-label="{ rowsPerPage: '{{ 'ROWS_PER_PAGE' | translate }}', of: '{{ 'OF' | translate }}' }">
+	</md-table-pagination>
+
+  <md-button class="md-fab md-primary md-fab-bottom-right"
+    aria-label="New Place" ng-click="onCreatePlace($event)">
+    <ng-md-icon class="icon-add" icon="add"
+      layout="column" layout-align="center center">
+    </ng-md-icon>
+  </md-button>
+</md-content>

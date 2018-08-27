@@ -1,0 +1,79 @@
+<md-content ng-controller="SliderImageCtrl">
+   
+    <md-table-container>
+        <table md-table md-progress="promise">
+            <thead md-head md-on-reorder="logOrder">
+                <tr md-row>
+                    <th md-column>Image</th>
+                    <th md-column>Sort</th>
+                    <th md-column>Place</th>
+                    <th md-column>URL</th>
+                    <th md-column>Status</th>
+                    <th md-column>Action</th>
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row ng-repeat="slider in sliderImages">
+                    <td md-cell>
+                      <img width="120"
+                        ng-src="/images/placeholder.png" actual-src="{{:: slider.image.url() }}"
+                    </td>
+                    <td md-cell>{{:: slider.sort }}</td> 
+                    <td md-cell>{{:: slider.place.title }}</td>
+                    <td md-cell>{{:: slider.url }}</td>
+                    <td md-cell>{{:: slider.isActive == true ? 'Active' : 'Inactive' }}</td>
+                    <td md-cell>
+                        <md-menu>
+                            <md-button class="md-icon-button" aria-label="Open menu" ng-click="openMenu($mdOpenMenu, $event)">
+                                <ng-md-icon md-menu-origin icon="more_vert" layout="row" layout-align="start center">
+                                </ng-md-icon>
+                            </md-button>
+                            <md-menu-content width="3">
+
+                                <md-menu-item>
+                                    <md-button aria-label="Edit slider"
+                                    ng-click="onNewEditSlider($event, slider)">
+                                        Edit
+                                    </md-button>
+                                </md-menu-item>
+
+                                <md-menu-item>
+                                    <md-button aria-label="Delete slider"
+                                    ng-click="onDelete(slider)">
+                                        Delete
+                                    </md-button>
+                                </md-menu-item>
+
+                                <md-divider></md-divider>
+
+                                <md-menu-item>
+                                    <md-button aria-label="Inactive"
+                                    ng-click="onChangeStatus(slider, false)">
+                                        Inactive
+                                    </md-button>
+                                </md-menu-item>
+
+                                <md-menu-item>
+                                    <md-button aria-label="Activate"
+                                    ng-click="onChangeStatus(slider, true)">
+                                        Active
+                                    </md-button>
+                                </md-menu-item>
+
+                            </md-menu-content>
+                        </md-menu>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+    <md-table-pagination md-limit-options="rowOptions" md-limit="query.limit" md-page="query.page" md-total="{{query.total}}"
+        md-on-paginate="onPaginationChange">
+    </md-table-pagination>
+    <md-button class="md-primary md-fab md-fab-bottom-right"
+      aria-label="New Slider Image" 
+      ng-click="onNewEditSlider($event)">
+        <ng-md-icon class="icon-add" icon="add" layout="column" layout-align="center center">
+        </ng-md-icon>
+    </md-button>
+</md-content>
