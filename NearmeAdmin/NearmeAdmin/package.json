@@ -25,7 +25,7 @@
     "newrelic": "1.38.2",
     "node-cron": "^1.2.1",
     "parse": "1.11.1",
-    "parse-server": "2.8.2",
+    "parse-server": "4.1.0",
     "parse-server-fs-adapter": "1.0.1",
     "parse-server-simple-mailgun-adapter": "1.0.0",
     "pm2": "2.5.0",
