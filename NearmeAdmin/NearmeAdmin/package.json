@@ -21,7 +21,7 @@
     "mailgun-js": "0.7.7",
     "method-override": "2.3.5",
     "moment": "^2.22.2",
-    "mongodb": "2.2.28",
+    "mongodb": "3.1.13",
     "newrelic": "1.38.2",
     "node-cron": "^1.2.1",
     "parse": "1.11.1",
