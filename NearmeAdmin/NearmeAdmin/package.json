@@ -17,7 +17,7 @@
     "express-ejs-layouts": "2.0.0",
     "forever-monitor": "1.7.1",
     "jimp": "0.2.27",
-    "kerberos": "0.0.23",
+    "kerberos": "1.0.0",
     "mailgun-js": "0.7.7",
     "method-override": "2.3.5",
     "moment": "^2.22.2",
